@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="book-carwler:war">
+    <output-path>$PROJECT_DIR$/book-carwler/target</output-path>
+    <root id="archive" name="crawler.war">
+      <element id="artifact" artifact-name="book-carwler:war exploded" />
+    </root>
+  </artifact>
+</component>

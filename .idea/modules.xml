@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/book-carwler/book-carwler.iml" filepath="$PROJECT_DIR$/book-carwler/book-carwler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/book-common/book-common.iml" filepath="$PROJECT_DIR$/book-common/book-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/book-dao/book-dao.iml" filepath="$PROJECT_DIR$/book-dao/book-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/book-generator/book-generator.iml" filepath="$PROJECT_DIR$/book-generator/book-generator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/book-web/book-web.iml" filepath="$PROJECT_DIR$/book-web/book-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/books.iml" filepath="$PROJECT_DIR$/books.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="book-web:war">
+    <output-path>$PROJECT_DIR$/book-web/target</output-path>
+    <root id="archive" name="books-web.war">
+      <element id="artifact" artifact-name="book-web:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.book.dao.BookInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.book.entity.BookInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="book_code" property="bookCode" jdbcType="VARCHAR" />
+    <result column="book_cover" property="bookCover" jdbcType="VARCHAR" />
+    <result column="book_name" property="bookName" jdbcType="VARCHAR" />
+    <result column="book_type" property="bookType" jdbcType="VARCHAR" />
+    <result column="book_author" property="bookAuthor" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+    <result column="feild1" property="feild1" jdbcType="VARCHAR" />
+    <result column="feild2" property="feild2" jdbcType="VARCHAR" />
+    <result column="feild3" property="feild3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, book_code, book_cover, book_name, book_type, book_author, create_time, create_user, 
+    update_time, update_user, feild1, feild2, feild3
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.book.entity.BookInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_book_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_book_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbl_book_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.book.entity.BookInfoExample" >
+    delete from tbl_book_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.book.entity.BookInfo" >
+    insert into tbl_book_info (id, book_code, book_cover, 
+      book_name, book_type, book_author, 
+      create_time, create_user, update_time, 
+      update_user, feild1, feild2, 
+      feild3)
+    values (#{id,jdbcType=INTEGER}, #{bookCode,jdbcType=VARCHAR}, #{bookCover,jdbcType=VARCHAR}, 
+      #{bookName,jdbcType=VARCHAR}, #{bookType,jdbcType=VARCHAR}, #{bookAuthor,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateUser,jdbcType=VARCHAR}, #{feild1,jdbcType=VARCHAR}, #{feild2,jdbcType=VARCHAR}, 
+      #{feild3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.book.entity.BookInfo" >
+    insert into tbl_book_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="bookCode != null" >
+        book_code,
+      </if>
+      <if test="bookCover != null" >
+        book_cover,
+      </if>
+      <if test="bookName != null" >
+        book_name,
+      </if>
+      <if test="bookType != null" >
+        book_type,
+      </if>
+      <if test="bookAuthor != null" >
+        book_author,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updateUser != null" >
+        update_user,
+      </if>
+      <if test="feild1 != null" >
+        feild1,
+      </if>
+      <if test="feild2 != null" >
+        feild2,
+      </if>
+      <if test="feild3 != null" >
+        feild3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="bookCode != null" >
+        #{bookCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bookCover != null" >
+        #{bookCover,jdbcType=VARCHAR},
+      </if>
+      <if test="bookName != null" >
+        #{bookName,jdbcType=VARCHAR},
+      </if>
+      <if test="bookType != null" >
+        #{bookType,jdbcType=VARCHAR},
+      </if>
+      <if test="bookAuthor != null" >
+        #{bookAuthor,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="feild1 != null" >
+        #{feild1,jdbcType=VARCHAR},
+      </if>
+      <if test="feild2 != null" >
+        #{feild2,jdbcType=VARCHAR},
+      </if>
+      <if test="feild3 != null" >
+        #{feild3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.book.entity.BookInfoExample" resultType="java.lang.Integer" >
+    select count(*) from tbl_book_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tbl_book_info
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.bookCode != null" >
+        book_code = #{record.bookCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bookCover != null" >
+        book_cover = #{record.bookCover,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bookName != null" >
+        book_name = #{record.bookName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bookType != null" >
+        book_type = #{record.bookType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bookAuthor != null" >
+        book_author = #{record.bookAuthor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createUser != null" >
+        create_user = #{record.createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateUser != null" >
+        update_user = #{record.updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.feild1 != null" >
+        feild1 = #{record.feild1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.feild2 != null" >
+        feild2 = #{record.feild2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.feild3 != null" >
+        feild3 = #{record.feild3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tbl_book_info
+    set id = #{record.id,jdbcType=INTEGER},
+      book_code = #{record.bookCode,jdbcType=VARCHAR},
+      book_cover = #{record.bookCover,jdbcType=VARCHAR},
+      book_name = #{record.bookName,jdbcType=VARCHAR},
+      book_type = #{record.bookType,jdbcType=VARCHAR},
+      book_author = #{record.bookAuthor,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      create_user = #{record.createUser,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      update_user = #{record.updateUser,jdbcType=VARCHAR},
+      feild1 = #{record.feild1,jdbcType=VARCHAR},
+      feild2 = #{record.feild2,jdbcType=VARCHAR},
+      feild3 = #{record.feild3,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.book.entity.BookInfo" >
+    update tbl_book_info
+    <set >
+      <if test="bookCode != null" >
+        book_code = #{bookCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bookCover != null" >
+        book_cover = #{bookCover,jdbcType=VARCHAR},
+      </if>
+      <if test="bookName != null" >
+        book_name = #{bookName,jdbcType=VARCHAR},
+      </if>
+      <if test="bookType != null" >
+        book_type = #{bookType,jdbcType=VARCHAR},
+      </if>
+      <if test="bookAuthor != null" >
+        book_author = #{bookAuthor,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null" >
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="feild1 != null" >
+        feild1 = #{feild1,jdbcType=VARCHAR},
+      </if>
+      <if test="feild2 != null" >
+        feild2 = #{feild2,jdbcType=VARCHAR},
+      </if>
+      <if test="feild3 != null" >
+        feild3 = #{feild3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.book.entity.BookInfo" >
+    update tbl_book_info
+    set book_code = #{bookCode,jdbcType=VARCHAR},
+      book_cover = #{bookCover,jdbcType=VARCHAR},
+      book_name = #{bookName,jdbcType=VARCHAR},
+      book_type = #{bookType,jdbcType=VARCHAR},
+      book_author = #{bookAuthor,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      feild1 = #{feild1,jdbcType=VARCHAR},
+      feild2 = #{feild2,jdbcType=VARCHAR},
+      feild3 = #{feild3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
