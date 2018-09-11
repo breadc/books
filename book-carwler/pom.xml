@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>crawler</artifactId>
+    <artifactId>book-crawler</artifactId>
     <packaging>war</packaging>
 
     <name>crawler Maven Webapp</name>
